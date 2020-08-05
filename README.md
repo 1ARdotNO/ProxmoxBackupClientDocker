@@ -1,5 +1,5 @@
 # ProxmoxBackupClientDocker
-
+WIP!!! NOT ALL FEATURES ARE IMPLEMENTED
 Docker image for running proxmox backup client
 
 Works like this, 
