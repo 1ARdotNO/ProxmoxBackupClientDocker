@@ -9,4 +9,9 @@ if($ENV:PRESCRIPT){
 
 ##Run backupjob
 
-proxmox-backup-client backup
+if($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
+  proxmox-backup-client backup $ENV:ARCHIVENAME.pxar:/root
+}
+else {
+  write-host "MISSING VARIABLES"
+}
