@@ -12,6 +12,9 @@ if($ENV:PRESCRIPT){
 if($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
   #create args
   $backupargs="backup $ENV:ARCHIVENAME.pxar:$ENV:SOURCEDIR"
+  if($ENV:ENCRYPTIONKEY){
+    $backupargs+=" --keyfile $ENV:ENCRYPTIONKEY"
+  }
   #start the backup process
   Start-Process -Args $backupargs -FilePath proxmox-backup-client
 }
