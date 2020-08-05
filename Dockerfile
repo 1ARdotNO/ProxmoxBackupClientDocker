@@ -2,7 +2,7 @@ FROM debian:buster
 
 #Install dependencies
 RUN apt-get update
-RUN apt-get install wget ca-certificates -y
+RUN apt-get install wget ca-certificates cron -y
 
 #Add repository
 RUN echo "deb http://download.proxmox.com/debian/pbs buster pbstest" > /etc/apt/sources.list.d/pbstest-beta.list
