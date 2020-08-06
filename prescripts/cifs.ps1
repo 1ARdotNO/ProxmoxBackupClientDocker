@@ -7,5 +7,5 @@ apt install cifs-utils -y
 if(test-path /mnt/cifs){}
 else {mkdir /mnt/cifs}
 
-mount -t cifs $ENV:CIFS_UNC /mnt/cifs -o username=$ENV:CIFS_USER,password=$ENV:CIFS_PASSWORD,domain=$ENV:CIFS_DOMAIN
+mount -t cifs $ENV:CIFS_UNC /mnt/cifs -o username=$ENV:CIFS_USER,password=$ENV:CIFS_PASSWORD,domain=$ENV:CIFS_DOMAIN,ro
 
