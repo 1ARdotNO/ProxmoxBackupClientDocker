@@ -11,6 +11,10 @@ if($ENV:PRESCRIPT){
   write-host "Running Pre-script from $($ENV:PRESCRIPT)"
   . $ENV:PRESCRIPT
 }
+if($ENV:CIFS_UNC){
+  . /prescripts/cifs.ps1
+}
+
 
 ##Run backupjob
 
