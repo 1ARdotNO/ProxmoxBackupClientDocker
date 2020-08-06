@@ -2,6 +2,9 @@
 #Import ENV's
 Import-CliXml /env-vars.clixml | % { Set-Item "env:$($_.Name)" $_.Value }
 
+#Check if task is already running
+if(test-path /running){exit}
+
 ##Run pre script
 if($ENV:PRESCRIPT){
   write-host "Running Pre-script from $($ENV:PRESCRIPT)"
