@@ -1,7 +1,7 @@
 ##Script to mount cifs share
 
 #install packages
-apt install cifs-utils
+apt install cifs-utils -y
 
 #create dir
 if(test-path /mnt/cifs){}
