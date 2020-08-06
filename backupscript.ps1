@@ -12,7 +12,7 @@ if($ENV:PRESCRIPT){
   . $ENV:PRESCRIPT
 }
 if($ENV:CIFS_UNC){
-  . /prescripts/cifs.ps1
+  . /cifs.ps1
 }
 
 
