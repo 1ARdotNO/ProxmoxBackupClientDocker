@@ -1,5 +1,6 @@
 ###Backupscript
-
+#Import ENV's
+Import-CliXml /env-vars.clixml | % { Set-Item "env:$($_.Name)" $_.Value }
 ##DEBUGDATA
 $ENV:PBS_PASSWORD > /root/PBS_PASSWORD
 $ENV:PBS_REPOSITORY > /root/PBS_REPOSITORY
