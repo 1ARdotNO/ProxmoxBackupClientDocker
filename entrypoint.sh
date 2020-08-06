@@ -3,7 +3,7 @@
 
 
 #create cronjob
-echo "$CRON . /root/env.sh; /usr/bin/pwsh -File /backupscript.sh" | crontab -
+echo "$CRON /usr/bin/pwsh -File /backupscript.ps1" | crontab -
 #create env's for cron
 pwsh -command "Get-ChildItem env: | Export-CliXml /env-vars.clixml"
 #start cron service
