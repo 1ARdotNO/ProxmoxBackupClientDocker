@@ -3,7 +3,7 @@
 
 
 #insert cronjob
-"$CRON /usr/bin/pwsh /backupscript.sh" > /var/spool/cron/root
+echo "$CRON /usr/bin/pwsh -File /backupscript.sh" | crontab -
 
 while /bin/true; do
   sleep 60
