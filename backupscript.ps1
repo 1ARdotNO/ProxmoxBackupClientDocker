@@ -31,3 +31,7 @@ if($ENV:POSTSCRIPT){
   write-host "Running Post-script from $($ENV:POSTSCRIPT)"
   . $ENV:POSTSCRIPT
 }
+
+
+#Remove flag to show that task is running
+remove-item /running -force
