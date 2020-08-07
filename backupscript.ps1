@@ -1,9 +1,13 @@
 ###Backupscript
+
+#Start logging
+start-transcript
+
 #Import ENV's
 Import-CliXml /env-vars.clixml | % { Set-Item "env:$($_.Name)" $_.Value }
 
 #Check if task is already running
-if(test-path /running){exit}
+if(test-path /running){exit;stop-transcript}
 else {get-date > /running}
 
 ##Run pre script
@@ -40,3 +44,4 @@ if($ENV:POSTSCRIPT){
 
 #Remove flag to show that task is running
 remove-item /running -force
+stop-transcript
