@@ -23,6 +23,7 @@ if($ENV:CIFS_UNC){
 ##Run backupjob
 
 if($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
+  write-host "BACKUP STARTED"
   #create args
   $backupargs="backup $ENV:ARCHIVENAME.pxar:$ENV:SOURCEDIR"
   if($ENV:ENCRYPTIONKEY){
@@ -30,6 +31,7 @@ if($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
   }
   #start the backup process
   Start-Process -Wait -Args $backupargs -FilePath proxmox-backup-client
+  write-host "BACKUP COMPLETE"
 }
 else {
   write-host "MISSING VARIABLES"
@@ -37,6 +39,7 @@ else {
 
 ##Run post script
 if($ENV:POSTSCRIPT){
+  
   write-host "Running Post-script from $($ENV:POSTSCRIPT)"
   . $ENV:POSTSCRIPT
 }
