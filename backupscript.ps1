@@ -29,7 +29,7 @@ if($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
     $backupargs+=" --keyfile $ENV:ENCRYPTIONKEY"
   }
   #start the backup process
-  Start-Process -Args $backupargs -FilePath proxmox-backup-client
+  Start-Process -Wait -Args $backupargs -FilePath proxmox-backup-client
 }
 else {
   write-host "MISSING VARIABLES"
