@@ -17,6 +17,6 @@ $targetdir="$backupdir"
 gcloud auth activate-service-account --key-file=$authfile
 
 #run backup
-. gsutil -m rsync-r $bucketname $targetdir 
+. gsutil -m rsync -d-r $bucketname $targetdir 
 }
 GCP-Backup -bucketname gs://$ENV:GCP_BUCKETNAME/ -backupdir $ENV:GCP_BACKUPDIR -authfile $ENV:GCP_AUTHFILE
