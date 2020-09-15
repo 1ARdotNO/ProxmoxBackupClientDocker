@@ -18,7 +18,9 @@ if($ENV:PRESCRIPT){
 if($ENV:CIFS_UNC){
   . /cifs.ps1
 }
-
+if($ENV:GCP_BUCKETNAME){
+  . /googlecloud.ps1
+}
 
 ##Run backupjob
 
