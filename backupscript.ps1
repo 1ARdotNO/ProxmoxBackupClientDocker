@@ -30,8 +30,11 @@ if($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
     $backupargs+=" --keyfile $ENV:ENCRYPTIONKEY"
   }
   #start the backup process
-  Start-Process -Wait -Args $backupargs -FilePath proxmox-backup-client
+  Start-Process -Wait -Args $backupargs -FilePath proxmox-backup-client -RedirectStandardOutput /tmp/output.log -RedirectStandardError /tmp/error.log -nonewwindow
   write-host "BACKUP COMPLETE"
+  #Print log to transcript
+  get-content /tmp/output.log
+  get-content /tmp/error.log
 }
 else {
   write-host "MISSING VARIABLES"
