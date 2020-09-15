@@ -6,7 +6,7 @@ function GCP-Backup{
 param(
 $bucketname,
 $backupdir,
-$authfile,
+$authfile
 
 )
 
