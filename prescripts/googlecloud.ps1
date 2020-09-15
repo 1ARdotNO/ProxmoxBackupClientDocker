@@ -11,14 +11,12 @@ $authfile
 )
 
 #create folder
-$targetdir="$backupdir\$(get-date -Format yyyyMMdd-HHmm)"
-new-item $targetdir -ItemType Directory -Force
-
+$targetdir="$backupdir"
 
 #import credentials
 gcloud auth activate-service-account --key-file=$authfile
 
 #run backup
-. gsutil -m rsync -L $targetdir\log.txt -r $bucketname $targetdir 
+. gsutil -m rsync-r $bucketname $targetdir 
 }
 GCP-Backup -bucketname gs://$ENV:GCP_BUCKETNAME/ -backupdir $ENV:GCP_BACKUPDIR -authfile $ENV:GCP_AUTHFILE
