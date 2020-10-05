@@ -49,6 +49,9 @@ if($ENV:POSTSCRIPT){
   write-host "Running Post-script from $($ENV:POSTSCRIPT)"
   . $ENV:POSTSCRIPT
 }
+if($ENV:CIFS_UNC){
+  umount /mnt/cifs
+}
 
 
 #Remove flag to show that task is running
