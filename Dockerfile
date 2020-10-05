@@ -26,7 +26,7 @@ RUN \
  
  #install powershell modules
  RUN pwsh -command "install-module pselasticsearch -force"
- 
+ RUN pwsh -command "install-module core -force"
  
  #install packages for prescripts
  RUN apt install cifs-utils -y
