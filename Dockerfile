@@ -25,7 +25,7 @@ RUN \
  apt-get install -y powershell
  
  #install powershell modules
- RUN pwsh -command "install pselasticsearch -force"
+ RUN pwsh -command "install-module pselasticsearch -force"
  
  
  #install packages for prescripts
