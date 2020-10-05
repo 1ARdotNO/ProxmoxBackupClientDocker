@@ -55,5 +55,5 @@ remove-item /running -force
 stop-transcript
 
 #Process logs
-. reporting.ps1
+. /reporting.ps1
 
