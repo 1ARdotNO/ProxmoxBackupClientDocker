@@ -13,16 +13,16 @@ $errorlines=$transcript | Select-String -Pattern $Errorstrings
 if($ENV:ELASTIC_SERVER){
     
     $data=@{
-      log=$transcript
+      log="$transcript"
       status=$status
-      errorlines=$errorlines
+      errorlines=$errorlines.Line
     } | convertto-json
-    dbinfo=@{
-        server = "$ENV:ELASTIC_SERVER"
-        user = "$ENV:ELASTIC_USERNAME"
-        password = "$ENV:ELASTIC_PASSWORD"
-        protocol = "$ENV:ELASTICPROTOCOL"
-        index = "$ENV:ELASTIC_INDEX"
+    $dbinfo=@{
+        server = $ENV:ELASTIC_SERVER
+        user = $ENV:ELASTIC_USERNAME
+        password = $ENV:ELASTIC_PASSWORD
+        protocol = $ENV:ELASTICPROTOCOL
+        index = $ENV:ELASTIC_INDEX
     }
     #if index does not exist create it
     if(Get-Elasticindex @dbinfo ){}
