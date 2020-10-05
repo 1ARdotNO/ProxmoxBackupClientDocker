@@ -15,7 +15,7 @@ if($ENV:ELASTIC_SERVER){
     $data=@{
       log="$transcript"
       status=$status
-      errorlines=$errorlines.Line
+      errorlines=$errorlines | foreach-object {$_.line}
     } | convertto-json
     $dbinfo=@{
         server = $ENV:ELASTIC_SERVER
