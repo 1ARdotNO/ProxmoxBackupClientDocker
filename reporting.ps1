@@ -10,7 +10,7 @@ $transcript=get-content /root/$now
 $errorlines=$transcript | Select-String -Pattern $Errorstrings
 
 
-if($env:elastic_server){
+if($env:ELASTIC_SERVER){
     
     $data=@{
       log=$transcript
@@ -18,7 +18,7 @@ if($env:elastic_server){
       errorlines=$errorlines
     } | convertto-json
     dbinfo=@{
-        server = "$ENV:ELASTIC_SERVERr"
+        server = "$ENV:ELASTIC_SERVER"
         user = "$ENV:ELASTIC_USERNAME"
         password = "$ENV:ELASTIC_PASSWORD"
         protocol = "$ENV:ELASTICPROTOCOL"
