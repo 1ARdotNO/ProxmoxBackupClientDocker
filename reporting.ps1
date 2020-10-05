@@ -10,7 +10,7 @@ $transcript=get-content /root/$now
 $errorlines=$transcript | Select-String -Pattern $Errorstrings
 
 
-if($env:ELASTIC_SERVER){
+if($ENV:ELASTIC_SERVER){
     
     $data=@{
       log=$transcript
