@@ -1,7 +1,7 @@
 ###Backupscript
-
+$now=get-date -Format yyyyMMdd_hhmm
 #Start logging
-start-transcript
+start-transcript -path /root/$now
 
 #Import ENV's
 Import-CliXml /env-vars.clixml | % { Set-Item "env:$($_.Name)" $_.Value }
@@ -53,3 +53,7 @@ if($ENV:POSTSCRIPT){
 #Remove flag to show that task is running
 remove-item /running -force
 stop-transcript
+
+#Process logs
+. reporting.ps1
+
