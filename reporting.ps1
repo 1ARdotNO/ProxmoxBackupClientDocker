@@ -18,11 +18,11 @@ if($env:elastic_host){
       errorlines=$errorlines
     } | convertto-json
     dbinfo=@{
-        server = "$ENV:elastic_server"
-        user = "$ENV:elastic_username"
-        password = "$ENV:elastic_password"
-        protocol = "$ENV:elastic_protocol"
-        index = "$ENV:elastic_index"
+        server = "$ENV:ELASTIC_SERVERr"
+        user = "$ENV:ELASTIC_USERNAME"
+        password = "$ENV:ELASTIC_PASSWORD"
+        protocol = "$ENV:ELASTICPROTOCOL"
+        index = "$ENV:ELASTIC_INDEX"
     }
     #if index does not exist create it
     if(Get-Elasticindex @dbinfo ){}
@@ -30,6 +30,6 @@ if($env:elastic_host){
         New-Elasticindex @dbinfo
     sleep 10
     }
-    add-elasticdata @dbinfo -body $data
+    Add-elasticdata @dbinfo -body $data
     
 }
