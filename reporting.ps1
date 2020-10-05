@@ -16,7 +16,7 @@ if($ENV:ELASTIC_SERVER){
       "@timestamp"=$datetime | get-date -format o
       name = $ENV:ARCHIVENAME
       log="$transcript"
-      status=if($errorlines){"OK"}else{"Fail"}
+      status=if($errorlines){"Fail"}else{"OK"}
       errorlines=$errorlines | foreach-object {$_.line}
     } | convertto-json
     $dbinfo=@{
