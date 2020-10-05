@@ -13,6 +13,7 @@ $errorlines=$transcript | Select-String -Pattern $Errorstrings
 if($ENV:ELASTIC_SERVER){
     
     $data=@{
+      "@timestamp"=$datetime | get-date -format o
       log="$transcript"
       status=$status
       errorlines=$errorlines | foreach-object {$_.line}
