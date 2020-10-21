@@ -11,8 +11,8 @@ RUN wget http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg -O /etc/a
 
 #Install packages
 RUN apt-get update
-RUN apt-get install proxmox-backup-client=0.8.14-1 -y
-##Install this version because of bug in 15 and 16 with benchmark being exchanged for backup for some reason, BUG
+RUN apt-get install proxmox-backup-client -y
+
 
 # Install powershell 7
 RUN \
