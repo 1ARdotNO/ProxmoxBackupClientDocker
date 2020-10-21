@@ -1,6 +1,6 @@
 ###Backupscript
 $datetime=get-date
-$now=$datetime | get-date -Format yyyyMMdd_hhmm
+$now=$datetime | get-date -Format yyyyMMdd_HHmm
 #Start logging
 start-transcript -path /root/$now
 
