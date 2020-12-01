@@ -41,6 +41,12 @@ udpate
       - CIFS_USER=backupservice
       - CIFS_PASSWORD=rsecretsecretcifsuserpassword
       - CIFS_DOMAIN=domain
+      #SCP file copy backup, copy files from a ssh location and include in backup. ie. for backing up firewall configs etc. (unifi/pfesense)
+      - SCP_SOURCE=/cf/conf/backup/ #For pfsense
+      - SCP_TARGET=/mnt/scp
+      - SCP_HOST=hostname
+      - SCP_USER=backupuser
+      - SCP_PASSWORD=secret
       # Set encryption key for encrypted backups!
       - ENCRYPTIONKEY=/backup/root/yourkeyfile.enc #Create keyfile manually and mount the file as a volume into the container
       - PBS_ENCRYPTION_PASSWORD=secret #if the keyfile is password proteced put the password here
