@@ -1,4 +1,5 @@
 # ProxmoxBackupClientDocker
+![Docker Image CI](https://github.com/OvrAp3x/ProxmoxBackupClientDocker/workflows/Docker%20Image%20CI/badge.svg)
 WIP!!! NOT ALL FEATURES ARE IMPLEMENTED
 Docker image for running proxmox backup client
 
