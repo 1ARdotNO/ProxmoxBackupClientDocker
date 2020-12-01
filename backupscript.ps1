@@ -22,6 +22,9 @@ if($ENV:CIFS_UNC){
 if($ENV:GCP_BUCKETNAME){
   . /googlecloud.ps1
 }
+if($ENV:SCP_HOST){
+  . /scp.ps1
+}
 
 ##Run backupjob
 
