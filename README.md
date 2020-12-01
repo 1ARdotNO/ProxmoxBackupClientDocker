@@ -21,3 +21,33 @@ ENVS:
 Predefined prescripts should have ENV's to define args, authentication, path etc.
 
 udpate
+
+
+## ENVIROMENT VARIABLES
+    #General REQUIRED ENV's
+      - TZ=Europe/Oslo
+      - CRON=10 5 * * *
+      - PBS_PASSWORD=SUPERSECRETPASSWORD
+      - PBS_REPOSITORY=backupserverhostname:reponame
+      - PBS_FINGERPRINT=25:06:35:f1:a4:ad:c2:84:0b:f9:00:a7:c5:3b:22:cb:72:b0:52:8a:22:3a:27:70:11:d3:9a:3c:a1:e2:32:a4
+      - SOURCEDIR=/mnt/gcp/
+      - ARCHIVENAME=BACKUPARCHIVENAME
+      #For google cloud backup
+      - GCP_BUCKETNAME=name of the bucket to backup
+      - GCP_BACKUPDIR=/mnt/gcp/ #should match SOURCEDIR
+      - GCP_AUTHFILE=/pathtogcp auth file .json
+      #For CIFS share as source of backup
+      - CIFS_UNC=//server/share/folder/ #should match SOURCEDIR
+      - CIFS_USER=backupservice
+      - CIFS_PASSWORD=rsecretsecretcifsuserpassword
+      - CIFS_DOMAIN=domain
+      # Set encryption key for encrypted backups!
+      - ENCRYPTIONKEY=/backup/root/yourkeyfile.enc #Create keyfile manually and mount the file as a volume into the container
+      - PBS_ENCRYPTION_PASSWORD=secret #if the keyfile is password proteced put the password here
+      #Logging options
+        #Log to elasticsearch
+      - ELASTIC_SERVER=elastic
+      - ELASTIC_USERNAME=personperson ##elastic credentials
+      - ELASTIC_PASSWORD=secret ##elastic credentials
+      - ELASTIC_PROTOCOL=http
+      - ELASTIC_INDEX=backuplogs
