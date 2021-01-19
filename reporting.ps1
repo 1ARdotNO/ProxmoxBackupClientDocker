@@ -16,7 +16,7 @@ if($ENV:ELASTIC_SERVER){
       "@timestamp"=$datetime | get-date -format o
       name = $ENV:ARCHIVENAME
       log="$transcript"
-      status=if($errorlines){"Fail"}elseif($errorlines -like "*warning: file size shrunk while reading*"){"Warning"}elseif($errorlines -like "*warning: file size increased while reading*"){"Warning"}else{"OK"}
+      status=if($errorlines -like "*warning: file size shrunk while reading*"){"Warning"}elseif($errorlines -like "*warning: file size increased while reading*"){"Warning"}elseif($errorlines){"Fail"}else{"OK"}
       errorlines=$errorlines | foreach-object {$_.line}
     } | convertto-json
     $dbinfo=@{
