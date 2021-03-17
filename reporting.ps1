@@ -39,3 +39,10 @@ if($ENV:ELASTIC_SERVER){
     Add-elasticdata @dbinfo -body $data
     
 }
+
+if($errorlines -like "Fail"){
+    $retrycount+=1
+    if($retrycount -le 3){
+        . /backupscript.ps1
+    }
+}
