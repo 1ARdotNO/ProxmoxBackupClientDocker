@@ -40,7 +40,7 @@ if($ENV:ELASTIC_SERVER){
     
 }
 
-if($errorlines -like "Fail"){
+if(($data | convertfrom-json).status -like "Fail"){
     $retrycount+=1
     if($retrycount -le 3){
         . /backupscript.ps1
