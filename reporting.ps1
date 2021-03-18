@@ -22,6 +22,7 @@ if($ENV:ELASTIC_SERVER){
              elseif($errorlines){"Fail"}
              else{"OK"}
       errorlines=$errorlines | foreach-object {$_.line}
+      retrycount=$retrycount
     } | convertto-json
     $dbinfo=@{
         server = $ENV:ELASTIC_SERVER
