@@ -33,6 +33,9 @@ udpate
       - PBS_FINGERPRINT=25:06:35:f1:a4:ad:c2:84:0b:f9:00:a7:c5:3b:22:cb:72:b0:52:8a:22:3a:27:70:11:d3:9a:3c:a1:e2:32:a4
       - SOURCEDIR=/mnt/gcp/
       - ARCHIVENAME=BACKUPARCHIVENAME
+
+      #Optional General ENV's
+      - MAXRETRY=3 #Sets autmoatic retry if the log reports any errors, defaults to 3 if not specified
       #For google cloud backup
       - GCP_BUCKETNAME=name of the bucket to backup
       - GCP_BACKUPDIR=/mnt/gcp/ #should match SOURCEDIR
