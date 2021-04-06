@@ -43,6 +43,8 @@ if($ENV:ELASTIC_SERVER){
 
 if(($data | convertfrom-json).status -like "Fail"){
     IF(!$ENV:MAXRETRY){$ENV:MAXRETRY=3} #Default to 3 retries if nothing is specified
+    IF(!$ENV:RETRY_SLEEP){$ENV:RETRY_SLEEP=600} #Default to 3 retries if nothing is specified
+    sleep $ENV:RETRY_SLEEP
     $retrycount+=1
     if($retrycount -le $ENV:MAXRETRY){
         . /backupscript.ps1
