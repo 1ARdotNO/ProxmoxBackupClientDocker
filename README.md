@@ -58,7 +58,7 @@ udpate
       - GITHUB_TOKEN=supersecretpersonalaccesstoken
       - GITHUB_ORG=organisation-name #optional, if set includes all repo's in org that your account has access to
       - GITHUB_ORG_REPO_TYPE=All  #optional, options are all,private,public, defaults to all
-      - GITHUB_ORG_EXCLUDE_REPOS= reponame #optional, to exclude a repo from org level backup
+      - GITHUB_ORG_EXCLUDE_REPOS=reponame #optional, to exclude a repo from org level backup
       - GITHUB_INCLUDE_WIKI=yes #optional defaults to yes, set to no to exclude wiki's
       - GITHUB_INCLUDE_ISSUES=yes #optional defaults to yes, set to no to exclude issues
       - GITHUB_REPOS=repo1,repo2 # optional, use if only backing up specific repo's and org is not set

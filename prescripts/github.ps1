@@ -1,3 +1,5 @@
+#disable telemetry
+Set-GitHubConfiguration -DisableTelemetry
 
 #set defaults if env's not set
 if (!$ENV:GITHUB_ORG_REPO_TYPE) { $ENV:GITHUB_ORG_REPO_TYPE = "all" }
