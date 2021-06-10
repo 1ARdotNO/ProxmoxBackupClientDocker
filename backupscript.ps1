@@ -28,6 +28,12 @@ if($ENV:SCP_HOST){
 if($ENV:GITHUB_TOKEN){
   . /github.ps1
 }
+if($ENV:ATLASSIANCLOUD_JIRABACKUP){
+  . /jira-cloud.ps1
+}
+if($ENV:ATLASSIANCLOUD_CONFLUENCEBACKUP){
+  . /confluence-cloud.ps1
+}
 
 ##Run backupjob
 

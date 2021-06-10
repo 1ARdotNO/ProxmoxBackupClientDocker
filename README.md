@@ -62,6 +62,13 @@ udpate
       - GITHUB_INCLUDE_WIKI=yes #optional defaults to yes, set to no to exclude wiki's
       - GITHUB_INCLUDE_ISSUES=yes #optional defaults to yes, set to no to exclude issues
       - GITHUB_REPOS=repo1,repo2 # optional, use if only backing up specific repo's and org is not set
+      #Atlassian cloud backup
+      - ATLASSIANCLOUD_TOKEN=yourapitoken
+      - ATLASSIANCLOUD_USERNAME=yourusername #emailaddress
+      - ATLASSIANCLOUD_ACCOUNT=yourcompany # Atlassian subdomain i.e. whateverproceeds.atlassian.net
+      - ATLASSIANCLOUD_JIRABACKUP=yes #to enable jira backup
+      - ATLASSIANCLOUD_JIRA_ATTACHMENTS=true #include attachements in backup, defaults to true
+      - ATLASSIANCLOUD_CONFLUENCEBACKUP=yes #to enable confluence backup
       # Set encryption key for encrypted backups!
       - ENCRYPTIONKEY=/backup/root/yourkeyfile.enc #Create keyfile manually and mount the file as a volume into the container
       - PBS_ENCRYPTION_PASSWORD=secret #if the keyfile is password proteced put the password here
