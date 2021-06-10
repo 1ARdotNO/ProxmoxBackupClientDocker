@@ -67,6 +67,12 @@ if($ENV:CIFS_UNC){
 if($ENV:GITHUB_TOKEN){
   . /post-github.ps1
 }
+if($ENV:ATLASSIANCLOUD_JIRABACKUP){
+  . /post-jira-cloud.ps1
+}
+if($ENV:ATLASSIANCLOUD_CONFLUENCEBACKUP){
+  . /post-confluence-cloud.ps1
+}
 
 
 #Remove flag to show that task is running

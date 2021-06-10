@@ -69,6 +69,7 @@ udpate
       - ATLASSIANCLOUD_JIRABACKUP=yes #to enable jira backup
       - ATLASSIANCLOUD_JIRA_ATTACHMENTS=true #include attachements in backup, defaults to true
       - ATLASSIANCLOUD_CONFLUENCEBACKUP=yes #to enable confluence backup
+      - ATLASSIANCLOUD_CONFLUENCE_ATTACHMENTS=true #include attachements in backup, defaults to true
       # Set encryption key for encrypted backups!
       - ENCRYPTIONKEY=/backup/root/yourkeyfile.enc #Create keyfile manually and mount the file as a volume into the container
       - PBS_ENCRYPTION_PASSWORD=secret #if the keyfile is password proteced put the password here
