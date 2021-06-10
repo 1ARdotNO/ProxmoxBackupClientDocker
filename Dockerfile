@@ -48,5 +48,6 @@ COPY reporting.ps1 /
 RUN chmod a+x /reporting.ps1
 RUN chmod a+x /backupscript.ps1
 COPY prescripts /
+COPY postscripts /
 STOPSIGNAL SIGINT
 ENTRYPOINT ["/entrypoint.sh"]
