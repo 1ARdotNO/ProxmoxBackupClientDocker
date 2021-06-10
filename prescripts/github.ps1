@@ -18,7 +18,7 @@ elseif ($ENV:GITHUB_REPOS) {
 
 #ERROR IF 0 REPOS are detected
 if($repos.count -eq 0){"FATAL ERROR: 0 REPOS FOUND OR SELECTED"}
-uapi-model
+
 #Perform mirror
 $repos |where {$_ -like "**"} | ForEach-Object {
     #"STARTING MAIN EXPORT"
