@@ -1,5 +1,6 @@
 # ProxmoxBackupClientDocker
 ![Docker Image CI](https://github.com/OvrAp3x/ProxmoxBackupClientDocker/workflows/Docker%20Image%20CI/badge.svg)
+[![PSScriptAnalyzer](https://github.com/OvrAp3x/ProxmoxBackupClientDocker/actions/workflows/powershell-analysis.yml/badge.svg)](https://github.com/OvrAp3x/ProxmoxBackupClientDocker/actions/workflows/powershell-analysis.yml)
 WIP!!! NOT ALL FEATURES ARE IMPLEMENTED
 Docker image for running proxmox backup client
 
