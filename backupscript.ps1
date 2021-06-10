@@ -25,6 +25,9 @@ if($ENV:GCP_BUCKETNAME){
 if($ENV:SCP_HOST){
   . /scp.ps1
 }
+if($ENV:GITHUB_TOKEN){
+  . /github.ps1
+}
 
 ##Run backupjob
 
@@ -54,6 +57,9 @@ if($ENV:POSTSCRIPT){
 }
 if($ENV:CIFS_UNC){
   umount /mnt/cifs
+}
+if($ENV:GITHUB_TOKEN){
+  . /post-github.ps1
 }
 
 
