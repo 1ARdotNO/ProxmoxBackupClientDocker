@@ -26,12 +26,15 @@ if($ENV:SCP_HOST){
   . /scp.ps1
 }
 if($ENV:GITHUB_TOKEN){
+  "START GITHUB BACKUP"
   . /github.ps1
 }
 if($ENV:ATLASSIANCLOUD_JIRABACKUP){
+  "START JIRA BACKUP"
   . /jira-cloud.ps1
 }
 if($ENV:ATLASSIANCLOUD_CONFLUENCEBACKUP){
+  "START CONFLUENCE BACKUP"
   . /confluence-cloud.ps1
 }
 
