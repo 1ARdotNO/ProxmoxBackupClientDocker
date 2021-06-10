@@ -71,7 +71,7 @@ $BackupStatus.filename
 # Wait for backup to finish
 do {
     $status = Invoke-RestMethod -Method Get -Headers $header -Uri "https://$account.atlassian.net/wiki/rest/obm/1.0/getprogress"
-        $BackupStatus = convertfrom-json $GetBackupID.content
+        $BackupStatus = $status
         $BackupStatus.alternativePercentage
     $statusoutput = $BackupStatus.alternativePercentage
     $separator = ","
