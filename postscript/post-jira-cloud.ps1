@@ -1,1 +1,1 @@
-gci $ENV:SOURCEDIR | where { $_ -like "JIRA-backup-*"} |remove-item 
+gci $ENV:SOURCEDIR | where { $_.name -like "JIRA-backup-*"} |remove-item 

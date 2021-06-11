@@ -1,1 +1,1 @@
-gci $ENV:SOURCEDIR | where { $_ -like "confluence-backup-*"} |remove-item 
+gci $ENV:SOURCEDIR | where { $_.name -like "confluence-backup-*"} |remove-item 
