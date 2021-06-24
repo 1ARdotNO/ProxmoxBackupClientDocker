@@ -81,3 +81,4 @@ udpate
       - ELASTICIGNORECERT=true
       - ELASTICHTTPS=true
       - ELASTIC_INDEX=backuplogs
+ 
