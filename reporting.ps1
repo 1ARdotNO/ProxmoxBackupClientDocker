@@ -26,9 +26,9 @@ if($ENV:ELASTIC_SERVER){
     } | convertto-json
     $dbinfo=@{
         server = $ENV:ELASTIC_SERVER
-        user = $ENV:ELASTIC_USERNAME
-        password = $ENV:ELASTIC_PASSWORD
-        protocol = $ENV:ELASTICPROTOCOL
+        #user = $ENV:ELASTIC_USERNAME
+        #password = $ENV:ELASTIC_PASSWORD
+        #protocol = $ENV:ELASTICPROTOCOL
         index = $ENV:ELASTIC_INDEX
     }
     #if index does not exist create it
