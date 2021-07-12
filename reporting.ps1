@@ -10,7 +10,7 @@ $transcript=get-content /root/$now
 $errorlines=$transcript | Select-String -Pattern $Errorstrings
 
 
-if($ENV:ELASTIC_SERVER){
+
     
     $data=@{
       "@timestamp"=$datetime | get-date -format o
@@ -24,6 +24,7 @@ if($ENV:ELASTIC_SERVER){
       errorlines=$errorlines | foreach-object {$_.line}
       retrycount=if($retrycount){$retrycount}else{0}
     } | convertto-json
+if($ENV:ELASTIC_SERVER){
     $dbinfo=@{
         server = $ENV:ELASTIC_SERVER
         #user = $ENV:ELASTIC_USERNAME
