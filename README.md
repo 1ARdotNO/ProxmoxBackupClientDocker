@@ -11,6 +11,7 @@ Set ENV's to point to which folder you want backed up and to which pbs server (s
 ENVS:
   -CRON
    cron pattern for how often the job should run
+   If CRON is not set, the container will launch the backupjob immediatly take care to not set the restart policy to "always" or "unless stopped, otherwise the container will loop forever
   -SOURCEDIR
    Source folder for the files
   -PRESCRIPT
