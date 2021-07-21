@@ -76,7 +76,9 @@ udpate
       #Logging options
         #Log to elasticsearch
       - ELASTIC_SERVER=elastic
-      - ELASTIC_USERNAME=personperson ##elastic credentials
-      - ELASTIC_PASSWORD=secret ##elastic credentials
-      - ELASTIC_PROTOCOL=http
+      - ELASTICUSER=personperson ##elastic credentials
+      - ELASTICPASSWORD=secret ##elastic credentials
+      - ELASTICIGNORECERT=true
+      - ELASTICHTTPS=true
       - ELASTIC_INDEX=backuplogs
+ 
