@@ -1,12 +1,14 @@
-FROM debian:buster
+FROM debian:bullseye
 
 #Install dependencies
 RUN apt-get update
 RUN apt-get install wget ca-certificates cron gnupg2 curl tar -y
 
 #Add repository
-RUN echo "deb http://download.proxmox.com/debian/pbs buster pbstest" > /etc/apt/sources.list.d/pbstest-beta.list
-RUN wget http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg -O /etc/apt/trusted.gpg.d/proxmox-ve-release-6.x.gpg
+RUN echo "deb http://download.proxmox.com/debian/pbs bullseye pbs-no-subscription" > /etc/apt/sources.list.d/pbstest-beta.list
+RUN wget https://enterprise.proxmox.com/debian/proxmox-release-bullseye.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-bullseye.gpg
+#verify gpg
+RUN md5sum -c <<<"bcc35c7173e0845c0d6ad6470b70f50e /etc/apt/trusted.gpg.d/proxmox-release-bullseye.gpg"
 
 
 #Install packages
