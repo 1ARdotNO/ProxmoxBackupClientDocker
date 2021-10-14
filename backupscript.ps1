@@ -8,7 +8,7 @@ start-transcript -path /root/$now
 Import-CliXml /env-vars.clixml | % { Set-Item "env:$($_.Name)" $_.Value }
 
 #Check if task is already running
-if(test-path /running){exit;stop-transcript}
+if(test-path /running){write-host "ERROR:Already running or previous job interrupted";exit;stop-transcript}
 else {get-date > /running}
 
 ##Run pre script
