@@ -5,4 +5,6 @@ if(test-path $ENV:SOURCEDIR){}
 else {mkdir $ENV:SOURCEDIR}
 
 #run instaloader to download public profile, does not re-download because of --fast-update
-instaloader profile $ENV:INSTAGRAM_PROFILES --fast-update --quiet
+$ENV:INSTAGRAM_PROFILES.split(" ") | foreach-object {
+    instaloader profile $_ --fast-update --quiet
+}
