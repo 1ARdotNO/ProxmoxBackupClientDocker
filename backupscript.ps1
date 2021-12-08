@@ -41,6 +41,11 @@ if($ENV:ATLASSIANCLOUD_CONFLUENCEBACKUP){
   "START CONFLUENCE BACKUP"
   . /confluence-cloud.ps1
 }
+if($ENV:INSTAGRAM_PROFILES){
+  "START INSTAGRAM BACKUP"
+  . /instagram.ps1
+}
+
 
 ##Run backupjob
 
