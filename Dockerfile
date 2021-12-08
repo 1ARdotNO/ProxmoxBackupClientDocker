@@ -16,6 +16,12 @@ RUN apt-get update
 RUN apt-get install proxmox-backup-client -y
 RUN apt-get install git -y
 
+#Install python3 and pip
+RUN apt-get install python3 -y
+RUN apt-get install python3-pip -y
+
+#install instaloader for instagram backup
+RUN pip3 install instaloader
 
 # Install powershell 7
 RUN \
