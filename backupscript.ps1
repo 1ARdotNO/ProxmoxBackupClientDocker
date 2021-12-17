@@ -10,8 +10,9 @@ Import-CliXml /env-vars.clixml | % { Set-Item "env:$($_.Name)" $_.Value }
 #Check if task is already running
 if(test-path /running){
 write-output "ERROR:Already running or previous job interrupted"
-exit
 stop-transcript
+. /reporting.ps1
+exit
 }
 else {get-date > /running}
 
