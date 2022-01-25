@@ -23,6 +23,7 @@ $errorlines=$transcript | Select-String -Pattern $Errorstrings
              else{"OK"}
       errorlines=$errorlines | foreach-object {$_.line}
       retrycount=if($retrycount){$retrycount}else{0}
+      backuprepository="$ENV:PBS_REPOSITORY"
     } | convertto-json
 if($ENV:ELASTIC_SERVER){
     $dbinfo=@{
