@@ -51,7 +51,7 @@ if($ENV:INSTAGRAM_PROFILES){
 ##Run backupjob
 
 if($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
-  write-host "BACKUP STARTED"
+  write-host "BACKUP STARTED $(get-date)"
   #create args
   $backupargs="backup $ENV:ARCHIVENAME.pxar:$ENV:SOURCEDIR"
   if($ENV:ENCRYPTIONKEY){
@@ -59,7 +59,7 @@ if($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
   }
   #start the backup process
   Start-Process -Wait -Args $backupargs -FilePath proxmox-backup-client -RedirectStandardOutput /tmp/output.log -RedirectStandardError /tmp/error.log -nonewwindow
-  write-host "BACKUP COMPLETE"
+  write-host "BACKUP COMPLETE $(get-date)"
   #Print log to transcript
   get-content /tmp/output.log
   get-content /tmp/error.log
@@ -91,6 +91,9 @@ if($ENV:ATLASSIANCLOUD_CONFLUENCEBACKUP){
 #Remove flag to show that task is running
 remove-item /running -force
 stop-transcript
+
+#Backup end for reporting
+$datetimeend=get-date
 
 #Process logs
 . /reporting.ps1

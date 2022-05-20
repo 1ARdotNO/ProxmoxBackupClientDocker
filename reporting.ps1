@@ -14,6 +14,7 @@ $errorlines=$transcript | Select-String -Pattern $Errorstrings
     
     $data=@{
       "@timestamp"=$datetime | get-date -format o
+      endtimestamp=$datetimeend | get-date -format o
       name = $ENV:ARCHIVENAME
       log="$transcript"
       status=if($errorlines -like "*warning: file size shrunk while reading*"){"Warning"}
