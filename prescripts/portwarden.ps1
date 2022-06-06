@@ -1,0 +1,1 @@
+portwarden --passphrase $ENV:PORTWARDEN_PASSPHRASE --filename $ENV:SOURCEDIR/$ENV:PORTWARDEN_VAULTNAME encrypt

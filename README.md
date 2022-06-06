@@ -39,6 +39,13 @@ udpate
       #Optional General ENV's
       - MAXRETRY=3 #Sets autmoatic retry if the log reports any errors, defaults to 3 if not specified
       - RETRY_SLEEP=600 #sets delay before retying again default to 600 seconds
+      #Bitwarden
+      - BW_CLIENTID=87asdhj1 #You API client ID
+      - BW_CLIENTSECRET=secretsecretsecret #Your API secret
+      - BW_SERVER=https://yourbitwardenserver.yourdomain.com #optional, with custom server set the url here
+      #Portwarden - Bitwarden vault backup tool
+      - PORTWARDEN_VAULTNAME=nameofvaultfile.portwarden #Some descriptive name of your vault.
+      - PORTWARDEN_PASSPHRASE=yoursecretpassphrase #Create a passphrase for the backup of your bitwarden vault. you NEED this to be able to restore, so choose something you will remember, or keep it in a safe place!
       #For google cloud backup
       - GCP_BUCKETNAME=name of the bucket to backup
       - GCP_BACKUPDIR=/mnt/gcp/ #should match SOURCEDIR

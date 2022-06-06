@@ -21,6 +21,12 @@ if($ENV:PRESCRIPT){
   write-host "Running Pre-script from $($ENV:PRESCRIPT)"
   . $ENV:PRESCRIPT
 }
+if($ENV:BW_CLIENTID){
+  . /bitwarden.ps1
+}
+if($ENV:PORTWARDEN_VAULTNAME){
+  . /portwarden.ps1
+}
 if($ENV:CIFS_UNC){
   . /cifs.ps1
 }
@@ -70,7 +76,6 @@ else {
 
 ##Run post script
 if($ENV:POSTSCRIPT){
-  
   write-host "Running Post-script from $($ENV:POSTSCRIPT)"
   . $ENV:POSTSCRIPT
 }
