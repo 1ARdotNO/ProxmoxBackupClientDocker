@@ -45,7 +45,8 @@ RUN \
  RUN apt install cifs-utils -y
  RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && apt-get update -y && apt-get install google-cloud-sdk -y
  RUN apt install sshpass openssh-client -y #For scp backups. ie. unifi/pfsense
-      
+    #Bitwarden backups
+    RUN wget https://github.com/vwxyzjn/portwarden/releases/download/1.0.0/portwarden_linux_amd64 -P /usr/bin && mv /usr/bin/portwarden_linux_amd64 /usr/bin/portwarden && chmod a+x /usr/bin/portwarden
 
 #start!
 
