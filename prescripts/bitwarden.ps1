@@ -9,4 +9,4 @@ if($ENV:BW_SERVER){
 #Login using API key from env's
 bw login --apikey
 #Unlock the vault after login
-bw unlock
+bw unlock --passwordenv BW_PASSWORD

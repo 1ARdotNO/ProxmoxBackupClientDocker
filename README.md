@@ -42,6 +42,7 @@ udpate
       #Bitwarden
       - BW_CLIENTID=87asdhj1 #You API client ID
       - BW_CLIENTSECRET=secretsecretsecret #Your API secret
+      - BW_PASSWORD=secretsecretsecretpassword #Your BW Password
       - BW_SERVER=https://yourbitwardenserver.yourdomain.com #optional, with custom server set the url here
       #Portwarden - Bitwarden vault backup tool
       - PORTWARDEN_VAULTNAME=nameofvaultfile.portwarden #Some descriptive name of your vault.
