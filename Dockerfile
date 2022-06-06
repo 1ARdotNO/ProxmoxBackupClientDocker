@@ -48,6 +48,9 @@ RUN \
     #Bitwarden backups
     RUN wget https://github.com/vwxyzjn/portwarden/releases/download/1.0.0/portwarden_linux_amd64 -P /usr/bin && mv /usr/bin/portwarden_linux_amd64 /usr/bin/portwarden && chmod a+x /usr/bin/portwarden
 
+#Cleanup
+RUN apt clean
+
 #start!
 
 COPY entrypoint.sh /
