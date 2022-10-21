@@ -79,6 +79,7 @@ udpate
       - ATLASSIANCLOUD_JIRA_ATTACHMENTS=true #include attachements in backup, defaults to true
       - ATLASSIANCLOUD_CONFLUENCEBACKUP=yes #to enable confluence backup
       - ATLASSIANCLOUD_CONFLUENCE_ATTACHMENTS=true #include attachements in backup, defaults to true
+      - OPSGENIE_APIKEY=youropsgenieapikey #to backup opsgenie
       #Instagram profile backup
       - INSTAGRAM_PROFILES=profile1 profile2
       - INSTAGRAM_LOGIN=yourinstagramusername
