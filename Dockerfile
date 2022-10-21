@@ -20,6 +20,12 @@ RUN apt-get install git -y
 RUN apt-get install python3 -y
 RUN apt-get install python3-pip -y
 
+#install java
+RUN apt install default-jre default-jdk -y
+
+#install opsgenie-config-backup
+RUN wget https://github.com/opsgenie/opsgenie-configuration-backup/releases/download/backup-v0.23.7/OpsGenieExportUtil-0.23.7.jar && mv OpsGenieExportUtil-0.23.7.jar /OpsGenieExportUtil.jar
+
 #install instaloader for instagram backup
 RUN pip3 install instaloader
 
