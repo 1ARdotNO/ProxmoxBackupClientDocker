@@ -8,5 +8,11 @@ if(test-path /mnt/cifs){}
 else {mkdir /mnt/cifs}
 
 "mounting cifs..."
-mount -t cifs $ENV:CIFS_UNC /mnt/cifs -o username=$ENV:CIFS_USER,password=$ENV:CIFS_PASSWORD,domain=$ENV:CIFS_DOMAIN,ro
+try{
+    mount -t cifs $ENV:CIFS_UNC /mnt/cifs -o username=$ENV:CIFS_USER,password=$ENV:CIFS_PASSWORD,domain=$ENV:CIFS_DOMAIN,ro
+}catch{
+    $internalerrorflag=$true
+    write-error "Error doing cifs fuse mount!"
+}
+
 
