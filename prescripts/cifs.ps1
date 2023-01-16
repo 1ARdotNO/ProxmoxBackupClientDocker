@@ -9,7 +9,11 @@ else {mkdir /mnt/cifs}
 
 "mounting cifs..."
 try{
-    mount -t cifs $ENV:CIFS_UNC /mnt/cifs -o username=$ENV:CIFS_USER,password=$ENV:CIFS_PASSWORD,domain=$ENV:CIFS_DOMAIN,ro
+    $cifsconnectionstring="username=$($ENV:CIFS_USER),password=$($ENV:CIFS_PASSWORD),domain=$($ENV:CIFS_DOMAIN),ro"
+    # Reinitialize ExitCode before calling external command
+    $global:LASTEXITCODE = 0
+    mount -t cifs $ENV:CIFS_UNC /mnt/cifs -o $cifsconnectionstring
+    if($LASTEXITCODE -ne 0){throw "error"}
 }catch{
     $internalerrorflag=$true
     write-error "Error doing cifs fuse mount!"
