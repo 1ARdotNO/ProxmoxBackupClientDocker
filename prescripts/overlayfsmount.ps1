@@ -12,6 +12,7 @@ $latestbackup=(proxmox-backup-client list --output-format json) | convertfrom-js
 try{
     $date1=(Get-Date 01.01.1970)+([System.TimeSpan]::fromseconds($latestbackup.'last-backup')) 
     $lastbackupname="host/$($latestbackup.'backup-id')/$(($date1 | get-date -format u).replace(" ","T"))"
+    "Mounting lower layer for overlayfs with proxmox-backup-client..."
     proxmox-backup-client mount  --keyfile $ENV:ENCRYPTIONKEY $lastbackupname $(($latestbackup.files | where {$_ -like "*pxar*"}).replace('.didx','')) /tmp/low
 }catch {
     $internalerrorflag=$true
@@ -20,6 +21,7 @@ try{
 if(!$internalerrorflag){
     mkdir $ENV:SOURCEDIR
     try{
+        "Mounting overlayfs..."
         mount -t overlay overlay -o lowerdir=/tmp/low/,upperdir=/tmp/overlay/up/,workdir=/tmp/overlay/work/ $ENV:SOURCEDIR
     }catch{
         $internalerrorflag=$true

@@ -65,7 +65,7 @@ if($ENV:INSTAGRAM_PROFILES){
 if($internalerrorflag){
   write-error "Internal error detected, aborting job!"
 }
-else if($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
+elseif($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
   write-host "BACKUP STARTED $(get-date)"
   #create args
   $backupargs="backup $ENV:ARCHIVENAME.pxar:$ENV:SOURCEDIR"
