@@ -17,7 +17,7 @@ try{
     $internalerrorflag=$true
     write-error "Error doing proxmox-backup-client mount fuse mount!"
 }
-if(!$internalerrorflag)
+if(!$internalerrorflag){
     mkdir $ENV:SOURCEDIR
     try{
         mount -t overlay overlay -o lowerdir=/tmp/low/,upperdir=/tmp/overlay/up/,workdir=/tmp/overlay/work/ $ENV:SOURCEDIR
