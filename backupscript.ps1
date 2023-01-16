@@ -17,6 +17,9 @@ exit
 else {get-date > /running}
 
 ##Run pre script
+if($ENV:OVERLAY){
+  . /overlayfsmount.ps1
+}
 if($ENV:PRESCRIPT){
   write-host "Running Pre-script from $($ENV:PRESCRIPT)"
   . $ENV:PRESCRIPT
@@ -59,8 +62,10 @@ if($ENV:INSTAGRAM_PROFILES){
 
 
 ##Run backupjob
-
-if($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
+if($internalerrorflag){
+  write-error "Internal error detected, aborting job!"
+}
+else if($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
   write-host "BACKUP STARTED $(get-date)"
   #create args
   $backupargs="backup $ENV:ARCHIVENAME.pxar:$ENV:SOURCEDIR"
@@ -94,6 +99,9 @@ if($ENV:ATLASSIANCLOUD_JIRABACKUP){
 }
 if($ENV:ATLASSIANCLOUD_CONFLUENCEBACKUP){
   . /post-confluence-cloud.ps1
+}
+if($ENV:OVERLAY){
+  . /post-overlayfsmount.ps1
 }
 
 
