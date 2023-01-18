@@ -37,6 +37,7 @@ udpate
       - ARCHIVENAME=BACKUPARCHIVENAME
 
       #Optional General ENV's
+      - PBS_NAMESPACE=/mynamespace/subnamespace/lowestlevelnamespace # select what namespace to use, default is 'root' (no namespace) only for PBS version 2.x and up.
       - OVERLAY=false # enables and overlay that uses the previous backup as a read only lower layer for the new backup, useful for Rsync or gcp rsync backups. default false. (will increase backup times, but will reduce the need for local storage in the backupworkers)
       - MAXRETRY=3 #Sets autmoatic retry if the log reports any errors, defaults to 3 if not specified
       - RETRY_SLEEP=600 #sets delay before retying again default to 600 seconds

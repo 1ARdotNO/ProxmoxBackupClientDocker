@@ -72,6 +72,9 @@ elseif($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
   if($ENV:ENCRYPTIONKEY){
     $backupargs+=" --keyfile $ENV:ENCRYPTIONKEY"
   }
+  if($ENV:PBS_NAMESPACE){
+    $backupargs+=" --ns $ENV:PBS_NAMESPACE"
+  }
   #start the backup process
   Start-Process -Wait -Args $backupargs -FilePath proxmox-backup-client -RedirectStandardOutput /tmp/output.log -RedirectStandardError /tmp/error.log -nonewwindow
   write-host "BACKUP COMPLETE $(get-date)"
