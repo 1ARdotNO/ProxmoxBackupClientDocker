@@ -6,7 +6,11 @@ mkdir /tmp/overlay/up
 mkdir /tmp/overlay/work
 
 #get latest backup from repo
-$latestbackup=(proxmox-backup-client list --output-format json) | convertfrom-json | where {$_."backup-id" -eq $ENV:ARCHIVENAME}
+if($ENV:PBS_NAMESPACE){
+    $latestbackup=(proxmox-backup-client list --ns $ENV:PBS_NAMESPACE --output-format json) | convertfrom-json | where {$_."backup-id" -eq $ENV:ARCHIVENAME}
+}else{
+    $latestbackup=(proxmox-backup-client list --output-format json) | convertfrom-json | where {$_."backup-id" -eq $ENV:ARCHIVENAME}
+}
 
 #mount previous backup
 try{
