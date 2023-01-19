@@ -13,7 +13,11 @@ try{
     $date1=(Get-Date 01.01.1970)+([System.TimeSpan]::fromseconds($latestbackup.'last-backup')) 
     $lastbackupname="host/$($latestbackup.'backup-id')/$(($date1 | get-date -format u).replace(" ","T"))"
     "Mounting lower layer for overlayfs with proxmox-backup-client..."
-    proxmox-backup-client mount  --keyfile $ENV:ENCRYPTIONKEY $lastbackupname $(($latestbackup.files | where {$_ -like "*pxar*"}).replace('.didx','')) /tmp/low
+    if($ENV:PBS_NAMESPACE){
+        proxmox-backup-client mount --ns $ENV:PBS_NAMESPACE --keyfile $ENV:ENCRYPTIONKEY $lastbackupname $(($latestbackup.files | where {$_ -like "*pxar*"}).replace('.didx','')) /tmp/low
+    }else{
+        proxmox-backup-client mount  --keyfile $ENV:ENCRYPTIONKEY $lastbackupname $(($latestbackup.files | where {$_ -like "*pxar*"}).replace('.didx','')) /tmp/low
+    }
 }catch {
     $internalerrorflag=$true
     write-error "Error doing proxmox-backup-client mount fuse mount!"
