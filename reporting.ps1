@@ -1,7 +1,7 @@
 #To be called from backupscript.ps1
 
 
-$Errorstrings="error","warning","fail","denied","refused"
+$Errorstrings="error","warning","fail","denied","refused","Errno"
 
 $transcript=get-content /root/$now
 
