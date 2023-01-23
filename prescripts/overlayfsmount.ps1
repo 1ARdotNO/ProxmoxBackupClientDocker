@@ -6,8 +6,8 @@ if($ENV:OVERLAY_TMPFS -eq "false"){
     }
     mkdir $ENV:OVERLAY_PATH/low
     mkdir $ENV:OVERLAY_PATH/overlay
-    mkdir $ENV:OVERLAY_PATH/up
-    mkdir $ENV:OVERLAY_PATH/work
+    mkdir $ENV:OVERLAY_PATH/overlay/up
+    mkdir $ENV:OVERLAY_PATH/overlay/work
 }else{
     mkdir /tmp/overlay
     mkdir /tmp/low

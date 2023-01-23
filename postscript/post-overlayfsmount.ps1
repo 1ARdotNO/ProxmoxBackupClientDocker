@@ -1,5 +1,7 @@
 #dismount 
 umount $ENV:SOURCEDIR
-umount /tmp/overlay
-umount /tmp/low
+umount $ENV:OVERLAY_PATH/overlay
+umount $ENV:OVERLAY_PATH/low
 
+remove-item -recurse -force $ENV:OVERLAY_PATH/overlay
+remove-item -recurse -force $ENV:OVERLAY_PATH/low
