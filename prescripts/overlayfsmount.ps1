@@ -1,9 +1,21 @@
 #create directory structures
-mkdir /tmp/overlay
-mkdir /tmp/low
-mount -t tmpfs tmpfs /tmp/overlay
-mkdir /tmp/overlay/up
-mkdir /tmp/overlay/work
+
+if($ENV:OVERLAY_TMPFS -eq "false"){
+    if(!$ENV:OVERLAY_PATH){
+        $ENV:OVERLAY_PATH="/OVERLAY"
+    }
+    mkdir $ENV:OVERLAY_PATH/low
+    mkdir $ENV:OVERLAY_PATH/overlay
+    mkdir $ENV:OVERLAY_PATH/up
+    mkdir $ENV:OVERLAY_PATH/work
+}else{
+    mkdir /tmp/overlay
+    mkdir /tmp/low
+    mount -t tmpfs tmpfs /tmp/overlay
+    mkdir /tmp/overlay/up
+    mkdir /tmp/overlay/work
+    $ENV:OVERLAY_PATH="/tmp"
+}
 
 #get latest backup from repo
 if($ENV:PBS_NAMESPACE){
@@ -18,9 +30,9 @@ try{
     $lastbackupname="host/$($latestbackup.'backup-id')/$(($date1 | get-date -format u).replace(" ","T"))"
     "Mounting lower layer for overlayfs with proxmox-backup-client..."
     if($ENV:PBS_NAMESPACE){
-        proxmox-backup-client mount --ns $ENV:PBS_NAMESPACE --keyfile $ENV:ENCRYPTIONKEY $lastbackupname $(($latestbackup.files | where {$_ -like "*pxar*"}).replace('.didx','')) /tmp/low
+        proxmox-backup-client mount --ns $ENV:PBS_NAMESPACE --keyfile $ENV:ENCRYPTIONKEY $lastbackupname $(($latestbackup.files | where {$_ -like "*pxar*"}).replace('.didx','')) $ENV:OVERLAY_PATH/low
     }else{
-        proxmox-backup-client mount  --keyfile $ENV:ENCRYPTIONKEY $lastbackupname $(($latestbackup.files | where {$_ -like "*pxar*"}).replace('.didx','')) /tmp/low
+        proxmox-backup-client mount  --keyfile $ENV:ENCRYPTIONKEY $lastbackupname $(($latestbackup.files | where {$_ -like "*pxar*"}).replace('.didx','')) $ENV:OVERLAY_PATH/low
     }
 }catch {
     $internalerrorflag=$true
@@ -30,7 +42,8 @@ if(!$internalerrorflag){
     mkdir $ENV:SOURCEDIR
     try{
         "Mounting overlayfs..."
-        mount -t overlay overlay -o lowerdir=/tmp/low/,upperdir=/tmp/overlay/up/,workdir=/tmp/overlay/work/ $ENV:SOURCEDIR
+        $mountstring="lowerdir=/tmp/low/,upperdir=$ENV:OVERLAY_PATH/overlay/up/,workdir=$ENV:OVERLAY_PATH/overlay/work/"
+        mount -t overlay overlay $ENV:SOURCEDIR -o $mountstring 
     }catch{
         $internalerrorflag=$true
         write-error "Error doing overlay mount!"
