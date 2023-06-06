@@ -30,6 +30,7 @@ udpate
     #General REQUIRED ENV's
       - TZ=Europe/Oslo
       - CRON=10 5 * * *
+      - PBS_USERNAME=root@pam #username for ypur pbs login, must be formatted like user@pam/user@pbs default root@pam
       - PBS_PASSWORD=SUPERSECRETPASSWORD
       - PBS_REPOSITORY=backupserverhostname:reponame
       - PBS_FINGERPRINT=25:06:35:f1:a4:ad:c2:84:0b:f9:00:a7:c5:3b:22:cb:72:b0:52:8a:22:3a:27:70:11:d3:9a:3c:a1:e2:32:a4

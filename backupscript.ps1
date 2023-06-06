@@ -66,6 +66,10 @@ if($internalerrorflag){
   write-error "Internal error detected, aborting job!"
 }
 elseif($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
+  #if username set, insert into repository string
+  if($ENV:PBS_USERNAME){
+    $ENV:PBS_REPOSITORY="$ENV:PBS_USERNAME@$ENV:PBS_REPOSITORY"
+  }
   write-host "BACKUP STARTED $(get-date)"
   #create args
   $backupargs="backup $ENV:ARCHIVENAME.pxar:$ENV:SOURCEDIR"
