@@ -8,6 +8,8 @@ $transcript=get-content /root/$now
 ##Check for error text
 
 $errorlines=$transcript | Select-String -Pattern $Errorstrings
+#exclude from error log as a harmless warning. ref. patch notes version 2.4
+$errorlines=$errorlines | where {$_ -notlike 'storing login ticket failed: $XDG_RUNTIME_DIR must be set'}
 
 
 
