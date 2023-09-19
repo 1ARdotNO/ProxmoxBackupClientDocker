@@ -42,7 +42,7 @@ if(!$internalerrorflag){
     mkdir $ENV:SOURCEDIR
     try{
         "Mounting overlayfs..."
-        $mountstring="lowerdir=/tmp/low/,upperdir=$ENV:OVERLAY_PATH/overlay/up/,workdir=$ENV:OVERLAY_PATH/overlay/work/"
+        $mountstring="lowerdir=$ENV:OVERLAY_PATH/low/,upperdir=$ENV:OVERLAY_PATH/overlay/up/,workdir=$ENV:OVERLAY_PATH/overlay/work/"
         mount -t overlay overlay $ENV:SOURCEDIR -o $mountstring 
     }catch{
         $internalerrorflag=$true
