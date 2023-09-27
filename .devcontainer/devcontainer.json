@@ -1,0 +1,16 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.169.0/containers/powershell
+{
+	"name": "PowerShell",
+	"image": "ghcr.io/ovrap3x/proxmoxbackupclientdocker:latest",
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"ms-vscode.powershell-preview",
+		"ironmansoftware.powershell-universal",
+		"tylerleonhardt.vscode-pester-test-adapter",
+		"tylerleonhardt.vscode-inline-values-powershell"
+//		"ironmansoftware.powershellprotools"
+	],
+
+}
