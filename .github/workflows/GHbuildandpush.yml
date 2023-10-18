@@ -34,4 +34,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/ovrap3x/proxmoxbackupclientdocker:latest
+          tags: ghcr.io/1ARdotNO/proxmoxbackupclientdocker:latest
