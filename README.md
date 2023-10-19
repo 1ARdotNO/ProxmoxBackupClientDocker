@@ -54,6 +54,7 @@ udpate
       - PORTWARDEN_PASSPHRASE=yoursecretpassphrase #Create a passphrase for the backup of your bitwarden vault. you NEED this to be able to restore, so choose something you will remember, or keep it in a safe place!
       #For google cloud backup
       - GCP_BUCKETNAME=name of the bucket to backup
+      - GCP_BUCKETPATHTIMESTAMP=yyyy-MM-dd #format to use for timestamped fodler inside the bucket ie. bucketname/2023-10-19
       - GCP_BACKUPDIR=/mnt/gcp/ #should match SOURCEDIR
       - GCP_AUTHFILE=/pathtogcp auth file .json
       #For CIFS share as source of backup

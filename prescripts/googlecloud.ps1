@@ -19,4 +19,11 @@ gcloud auth activate-service-account --key-file=$authfile
 #run backup
 . gsutil -m rsync -d -r $bucketname $targetdir 
 }
-GCP-Backup -bucketname gs://$ENV:GCP_BUCKETNAME/ -backupdir $ENV:GCP_BACKUPDIR -authfile $ENV:GCP_AUTHFILE
+
+IF($ENV:GCP_BUCKETPATHTIMESTAMP){
+    $buckettimestamp=get-date -Format $ENV:GCP_BUCKETPATHTIMESTAMP
+    $bucketpath="gs://$ENV:GCP_BUCKETNAME/$($buckettimestamp)"
+}else {
+    $bucketpath="gs://$ENV:GCP_BUCKETNAME/"
+}
+GCP-Backup -bucketname $bucketpath -backupdir $ENV:GCP_BACKUPDIR -authfile $ENV:GCP_AUTHFILE
