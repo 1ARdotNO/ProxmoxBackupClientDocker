@@ -20,6 +20,9 @@ else {get-date > /running}
 if($ENV:OVERLAY){
   . /overlayfsmount.ps1
 }
+if($ENV:CLEANBACKUPDIRBEFORE){
+  . /clean-backupdir.ps1
+}
 if($ENV:PRESCRIPT){
   write-host "Running Pre-script from $($ENV:PRESCRIPT)"
   . $ENV:PRESCRIPT
@@ -106,6 +109,9 @@ if($ENV:ATLASSIANCLOUD_JIRABACKUP){
 }
 if($ENV:ATLASSIANCLOUD_CONFLUENCEBACKUP){
   . /post-confluence-cloud.ps1
+}
+if($ENV:CLEANBACKUPDIRAFTER){
+  . /post-clean-backupdir.ps1
 }
 if($ENV:OVERLAY){
   . /post-overlayfsmount.ps1

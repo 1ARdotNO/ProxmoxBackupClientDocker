@@ -44,6 +44,8 @@ udpate
       - OVERLAY_PATH=/OVERLAY # path for overlay if not using tmpfs, default is /OVERLAY
       - MAXRETRY=3 #Sets autmoatic retry if the log reports any errors, defaults to 3 if not specified
       - RETRY_SLEEP=600 #sets delay before retying again default to 600 seconds
+      - CLEANBACKUPDIRBEFORE=false #automatically deletes all files from the backup directory before process start
+      - CLEANBACKUPDIRAFTER=false #automatically deletes all files from the backup directory after process run
       #Bitwarden
       - BW_CLIENTID=87asdhj1 #You API client ID
       - BW_CLIENTSECRET=secretsecretsecret #Your API secret

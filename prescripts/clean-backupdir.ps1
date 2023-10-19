@@ -1,0 +1,1 @@
+gci $ENV:SOURCEDIR | remove-item 
