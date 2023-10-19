@@ -1,1 +1,1 @@
-gci $ENV:SOURCEDIR | remove-item 
+gci $ENV:SOURCEDIR | remove-item -Recurse -Force
