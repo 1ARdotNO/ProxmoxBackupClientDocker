@@ -22,7 +22,7 @@ elseif ($ENV:GITHUB_REPOS) {
 if($repos.count -eq 0){"FATAL ERROR: 0 REPOS FOUND OR SELECTED"}
 
 #Perform mirror
-$repos |where {$_ -like "**"} | ForEach-Object {
+$repos |where {$_ -like "**"} | ForEach-Object -parallel {
     #Create dir for each repo
     cd $ENV:SOURCEDIR
     New-Item -ItemType Directory -Path $($_.full_name.replace('/','_'))
