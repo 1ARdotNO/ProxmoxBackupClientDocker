@@ -24,15 +24,16 @@ if($repos.count -eq 0){"FATAL ERROR: 0 REPOS FOUND OR SELECTED"}
 #Perform mirror
 $repos |where {$_ -like "**"} | ForEach-Object {
     #Create dir for each repo
+    cd $ENV:SOURCEDIR
     New-Item -ItemType Directory -Path $($_.full_name.replace('/','_'))
     cd $($_.full_name.replace('/','_'))
     #"STARTING MAIN EXPORT"
     $repo = $_.RepositoryUrl.replace("https://", "https://$($ENV:GITHUB_USERNAME):$($ENV:GITHUB_TOKEN)@")
-    $path = join-path -Path $ENV:SOURCEDIR -ChildPath "$($_.full_name.replace('/','_'))"
+    $path = join-path -Path $((get-location).path) -ChildPath "$($_.full_name.replace('/','_'))"
     New-Item -ItemType Directory -Path $path -ErrorAction SilentlyContinue | out-null
     $args = "clone --quiet --mirror $repo $path"
     Start-Process git -Wait -ArgumentList $args -NoNewWindow 
-    $tarargs="-cf $path.tar -C $ENV:SOURCEDIR $($_.full_name.replace('/','_'))"
+    $tarargs="-cf $path.tar -C $((get-location).path) $($_.full_name.replace('/','_'))"
     Start-Process tar -Wait -ArgumentList $tarargs -NoNewWindow  
     "repo exported for $($_.full_name)"
     remove-item -Path $path -Recurse -Force | out-null
@@ -42,12 +43,12 @@ $repos |where {$_ -like "**"} | ForEach-Object {
     if ($ENV:GITHUB_INCLUDE_WIKI -eq "yes") {
         if($_.has_wiki -eq "true"){
             $wikirepo="$($_.RepositoryUrl.replace("https://", "https://$($ENV:GITHUB_USERNAME):$($ENV:GITHUB_TOKEN)@")).wiki.git"
-            $wikipath = join-path -Path $ENV:SOURCEDIR -ChildPath "$($_.full_name.replace('/','_'))_wiki"
+            $wikipath = join-path -Path $((get-location).path) -ChildPath "$($_.full_name.replace('/','_'))_wiki"
             New-Item -ItemType Directory -Path $wikipath -ErrorAction SilentlyContinue | out-null
             $wikiargs = "clone --quiet --mirror $wikirepo $wikipath"
             Start-Process git -Wait -ArgumentList $wikiargs -NoNewWindow -RedirectStandardError /dev/null
             if((gci $wikipath).count -gt 0){
-                $tarargs="-cf $wikipath.tar -C $ENV:SOURCEDIR $($_.full_name.replace('/','_'))_wiki"
+                $tarargs="-cf $wikipath.tar -C $((get-location).path) $($_.full_name.replace('/','_'))_wiki"
                 Start-Process tar -Wait -ArgumentList $tarargs -NoNewWindow  
                 "wiki exported for $($_.full_name)"
             }
@@ -61,7 +62,7 @@ $repos |where {$_ -like "**"} | ForEach-Object {
             $issues=$null
             $issues=Get-GitHubIssue -uri $_.RepositoryUrl -AccessToken $ENV:GITHUB_TOKEN -State all
             if($issues.count -gt 0){
-                $issues | convertto-json -Depth 20 | out-file (join-path -Path $ENV:SOURCEDIR -ChildPath "$($_.full_name.replace('/','_'))_issues.json")
+                $issues | convertto-json -Depth 20 | out-file (join-path -Path $((get-location).path) -ChildPath "$($_.full_name.replace('/','_'))_issues.json")
                 #Removed, bugs out if there are to many comments, and is very slow to return the results
                 #$issues | Get-GitHubIssueComment -AccessToken $ENV:GITHUB_TOKEN | ConvertTo-Json -Depth 20 | out-file (join-path -Path $ENV:SOURCEDIR -ChildPath "$($_.full_name.replace('/','_'))_issue_comments.json")
             }
@@ -69,5 +70,5 @@ $repos |where {$_ -like "**"} | ForEach-Object {
         }
     }
 #go back to root directory
-$ENV:SOURCEDIR
+cd $ENV:SOURCEDIR
 }
