@@ -78,10 +78,25 @@ elseif($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
   #create 1 archive per item in the sourcefolder, or one global (default)
   if($ENV:ARCHIVEPERITEM){
     $backupargs="backup "
-    get-childitem $ENV:SOURCEDIR {
+    get-childitem $ENV:SOURCEDIR | foreach-object {
       $backupargs=$backupargs + " " + $($_.name) + ".pxar:" + $($_.fullname)
     }
-  }else{
+  }
+  if($ENV:BACKUPPERITEM){
+    get-childitem $ENV:SOURCEDIR | foreach-object {
+      $backupargs="backup "
+      $backupargs=$backupargs + " " + $($_.name) + ".pxar:" + $($_.fullname)
+        if($ENV:ENCRYPTIONKEY){
+          $backupargs+=" --keyfile $ENV:ENCRYPTIONKEY"
+        }
+        if($ENV:PBS_NAMESPACE){
+          $backupargs+=" --ns $ENV:PBS_NAMESPACE"
+        }
+        $backupargs+="--backup-id $($_.name)"
+      Start-Process -Wait -Args $backupargs -FilePath proxmox-backup-client -nonewwindow
+    }
+  }
+  else{
     $backupargs="backup $ENV:ARCHIVENAME.pxar:$ENV:SOURCEDIR"
   }
   if($ENV:ENCRYPTIONKEY){
@@ -91,7 +106,9 @@ elseif($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
     $backupargs+=" --ns $ENV:PBS_NAMESPACE"
   }
   #start the backup process
-  Start-Process -Wait -Args $backupargs -FilePath proxmox-backup-client -RedirectStandardOutput /tmp/output.log -RedirectStandardError /tmp/error.log -nonewwindow
+  if($ENV:BACKUPPERITEM){}else{
+    Start-Process -Wait -Args $backupargs -FilePath proxmox-backup-client -RedirectStandardOutput /tmp/output.log -RedirectStandardError /tmp/error.log -nonewwindow
+  }
   write-host "BACKUP COMPLETE $(get-date)"
   #Print log to transcript
   get-content /tmp/output.log
