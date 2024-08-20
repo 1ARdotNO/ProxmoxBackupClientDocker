@@ -46,6 +46,7 @@ udpate
       - RETRY_SLEEP=600 #sets delay before retying again default to 600 seconds
       - CLEANBACKUPDIRBEFORE=false #automatically deletes all files from the backup directory before process start
       - CLEANBACKUPDIRAFTER=false #automatically deletes all files from the backup directory after process run
+      - ARCHIVEPERITEM=false #automatically create 1 archive in the backup per folder in the source directory
       #Bitwarden
       - BW_CLIENTID=87asdhj1 #You API client ID
       - BW_CLIENTSECRET=secretsecretsecret #Your API secret
