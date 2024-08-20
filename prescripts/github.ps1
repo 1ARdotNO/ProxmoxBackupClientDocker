@@ -23,6 +23,9 @@ if($repos.count -eq 0){"FATAL ERROR: 0 REPOS FOUND OR SELECTED"}
 
 #Perform mirror
 $repos |where {$_ -like "**"} | ForEach-Object {
+    #Create dir for each repo
+    New-Item -ItemType Directory -Path $($_.full_name.replace('/','_'))
+    cd $($_.full_name.replace('/','_'))
     #"STARTING MAIN EXPORT"
     $repo = $_.RepositoryUrl.replace("https://", "https://$($ENV:GITHUB_USERNAME):$($ENV:GITHUB_TOKEN)@")
     $path = join-path -Path $ENV:SOURCEDIR -ChildPath "$($_.full_name.replace('/','_'))"
@@ -65,4 +68,6 @@ $repos |where {$_ -like "**"} | ForEach-Object {
             "$($issues.count) issues found for $($_.full_name) and exported"
         }
     }
+#go back to root directory
+$ENV:SOURCEDIR
 }
