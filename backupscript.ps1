@@ -75,7 +75,15 @@ elseif($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
   }
   write-host "BACKUP STARTED $(get-date)"
   #create args
-  $backupargs="backup $ENV:ARCHIVENAME.pxar:$ENV:SOURCEDIR"
+  #create 1 archive per item in the sourcefolder, or one global (default)
+  if($ENV:ARCHIVEPERITEM){
+    $backupargs="backup "
+    get-childitem $ENV:SOURCEDIR {
+      $backupargs=$backupargs + " " + $($_.name) + ".pxar:" + $($_.fullname)
+    }
+  }else{
+    $backupargs="backup $ENV:ARCHIVENAME.pxar:$ENV:SOURCEDIR"
+  }
   if($ENV:ENCRYPTIONKEY){
     $backupargs+=" --keyfile $ENV:ENCRYPTIONKEY"
   }
