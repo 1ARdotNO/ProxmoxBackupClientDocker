@@ -93,7 +93,9 @@ elseif($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
           $backupargs+=" --ns $ENV:PBS_NAMESPACE"
         }
         $backupargs+=" --backup-id $($_.name)"
-      Start-Process -Wait -Args $backupargs -FilePath proxmox-backup-client -nonewwindow
+      Start-Process -Wait -Args $backupargs -FilePath proxmox-backup-client -nonewwindow -RedirectStandardOutput "/tmp/output-$($_.name).log" -RedirectStandardError "/tmp/error-$($_.name).log"
+      get-content "/tmp/output-$($_.name).log"
+      get-content "/tmp/error-$($_.name).log"
     }
   }
   else{
