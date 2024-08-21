@@ -47,6 +47,7 @@ udpate
       - CLEANBACKUPDIRBEFORE=false #automatically deletes all files from the backup directory before process start
       - CLEANBACKUPDIRAFTER=false #automatically deletes all files from the backup directory after process run
       - ARCHIVEPERITEM=false #automatically create 1 archive in the backup per folder in the source directory
+      - HEALTHCHECKSURL=https://hc-ping.com/xxxxxxxxxxxx #disabled by default, put a healthchecks.io endpoint here or any other similar endpoint you want pinged with a "GET" when the job is successfull
       #Bitwarden
       - BW_CLIENTID=87asdhj1 #You API client ID
       - BW_CLIENTSECRET=secretsecretsecret #Your API secret

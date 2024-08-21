@@ -54,4 +54,6 @@ if(($data | convertfrom-json).status -like "Fail"){
     if($retrycount -le $ENV:MAXRETRY){
         . /backupscript.ps1
     }
+}elseif($ENV:HEALTHCHECKSURL){
+    invoke-webrequest $ENV:HEALTHCHECKSURL -SkipHttpErrorCheck -SkipCertificateCheck -SkipHeaderValidation -ErrorAction SilentlyContinue
 }
