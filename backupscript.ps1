@@ -82,8 +82,8 @@ elseif($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
       $backupargs=$backupargs + " " + $($_.name) + ".pxar:" + $($_.fullname)
     }
   }
-  if($ENV:BACKUPPERITEM){
-    get-childitem $ENV:SOURCEDIR | foreach-object {
+  elseif($ENV:BACKUPPERITEM){
+    get-childitem $ENV:SOURCEDIR | foreach-object -throttlelimit 5 -parallel {
       $backupargs="backup "
       $backupargs=$backupargs + " " + $($_.name) + ".pxar:" + $($_.fullname)
         if($ENV:ENCRYPTIONKEY){
@@ -108,11 +108,12 @@ elseif($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
   #start the backup process
   if($ENV:BACKUPPERITEM){}else{
     Start-Process -Wait -Args $backupargs -FilePath proxmox-backup-client -RedirectStandardOutput /tmp/output.log -RedirectStandardError /tmp/error.log -nonewwindow
+    #Print log to transcript
+    get-content /tmp/output.log
+    get-content /tmp/error.log
   }
   write-host "BACKUP COMPLETE $(get-date)"
-  #Print log to transcript
-  get-content /tmp/output.log
-  get-content /tmp/error.log
+
 }
 else {
   write-host "MISSING VARIABLES"
