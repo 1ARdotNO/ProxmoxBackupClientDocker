@@ -83,7 +83,7 @@ elseif($ENV:PBS_PASSWORD -and $ENV:PBS_REPOSITORY -and $ENV:ARCHIVENAME){
     }
   }
   elseif($ENV:BACKUPPERITEM){
-    get-childitem $ENV:SOURCEDIR | foreach-object -throttlelimit 5 -parallel {
+    get-childitem $ENV:SOURCEDIR | foreach-object -throttlelimit 10 -parallel {
       $backupargs="backup"
       $backupargs=$backupargs + " " + $($_.name) + ".pxar:" + $($_.fullname)
         if($ENV:ENCRYPTIONKEY){
