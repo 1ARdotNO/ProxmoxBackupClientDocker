@@ -1,7 +1,7 @@
 #To be called from backupscript.ps1
 
 
-$Errorstrings="error","warning","fail","denied","refused","Errno","is not recognized as a name of a cmdlet, function, script file, or executable program","Caught non-retryable exception while listing","Exception"
+$Errorstrings="error","warning","fail","denied","refused","Errno","is not recognized as a name of a cmdlet, function, script file, or executable program","Caught non-retryable exception while listing","Exception","API rate limit exceeded"
 
 $transcript=get-content /root/$now
 
