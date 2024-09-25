@@ -34,8 +34,11 @@ if($ENV:ELASTIC_SERVER){
         #user = $ENV:ELASTIC_USERNAME
         #password = $ENV:ELASTIC_PASSWORD
         #protocol = $ENV:ELASTICPROTOCOL
+        port = if($ENV:ELASTICPORT){$ENV:ELASTICPORT}else{"9200"}
+        path = if($ENV:ELASTICPATH){$ENV:ELASTICPATH}else{$null}
         index = $ENV:ELASTIC_INDEX
     }
+
     #if index does not exist create it
     if(Get-Elasticindex @dbinfo ){}
     else{

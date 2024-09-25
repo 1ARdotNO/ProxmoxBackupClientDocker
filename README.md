@@ -105,5 +105,7 @@ udpate
       - ELASTICIGNORECERT=true
       - ELASTICHTTPS=true
       - ELASTIC_INDEX=backuplogs
+      - ELASTICPORT=9200 #define if a custom port needs to be used other than 9200
+      - ELASTICPATH=/api/elastic #define if elastic is hosted on a path and not the root of the url
  
 -
