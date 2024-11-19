@@ -2,7 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.169.0/containers/powershell
 {
 	"name": "proxmoxbackupclientdocker",
-	"dockerFile": "Dockerfile",
+	"dockerFile": "../Dockerfile",
 	"settings": { 
 		"terminal.integrated.shell.linux": "/usr/bin/pwsh"
 	},
