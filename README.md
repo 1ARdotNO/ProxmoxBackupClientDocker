@@ -81,6 +81,7 @@ udpate
       - GITHUB_INCLUDE_WIKI=yes #optional defaults to yes, set to no to exclude wiki's
       - GITHUB_INCLUDE_ISSUES=yes #optional defaults to yes, set to no to exclude issues
       - GITHUB_REPOS=repo1,repo2 # optional, use if only backing up specific repo's and org is not set
+      - GITHUB_BACKUPSTARS=false #optional, use to backup all of your starred repos, targets the user for which the token used belongs to. (recommended to use with ARCHIVEPERITEM true to make a neat archive of all of these)
       #Atlassian cloud backup
       - ATLASSIANCLOUD_TOKEN=yourapitoken
       - ATLASSIANCLOUD_USERNAME=yourusername #emailaddress

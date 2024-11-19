@@ -18,6 +18,46 @@ elseif ($ENV:GITHUB_REPOS) {
     }
 }
 
+if($ENV:GITHUB_BACKUPSTARS -eq "True"){
+    function Get-GitHubStars {
+        param (
+            [string]$Token,
+            [string]$BaseUrl = "https://api.github.com",
+            [int]$PerPage = 30
+        )
+    
+        # Initialize variables
+        $headers = @{ 
+            Authorization = "token $Token"
+            Accept = "application/vnd.github.v3+json"
+        }
+        $stars = @()
+        $page = 1
+    
+        # Loop through pages until all results are retrieved
+        do {
+            $url = "$BaseUrl/user/starred?per_page=$PerPage&page=$page"
+            $response = Invoke-RestMethod -Uri $url -Headers $headers -Method Get
+            
+            # Add results to the array
+            $stars += $response
+            
+            # Check if the response has content
+            $hasMoreData = $response.Count -eq $PerPage
+            $page++
+        } while ($hasMoreData)
+    
+        # Return all starred repositories
+        return $stars
+    }
+    $allStars=Get-GitHubStars -Token $ENV:GITHUB_TOKEN
+    $repos+=$allStars.html_url | ForEach-Object {
+        Get-GitHubRepository -AccessToken $ENV:GITHUB_TOKEN -Uri $_
+    }
+
+}
+
+
 #ERROR IF 0 REPOS are detected
 if($repos.count -eq 0){"FATAL ERROR: 0 REPOS FOUND OR SELECTED"}
 
