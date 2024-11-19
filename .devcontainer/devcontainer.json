@@ -1,8 +1,8 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.169.0/containers/powershell
 {
-	"name": "PowerShell",
-	"dockerFile": "ghcr.io/ovrap3x/proxmoxbackupclientdocker:latest",
+	"name": "proxmoxbackupclientdocker",
+	"dockerFile": "Dockerfile",
 	"settings": { 
 		"terminal.integrated.shell.linux": "/usr/bin/pwsh"
 	},
