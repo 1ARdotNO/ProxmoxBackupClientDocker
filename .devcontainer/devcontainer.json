@@ -2,7 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.169.0/containers/powershell
 {
 	"name": "PowerShell",
-	"image": "ghcr.io/ovrap3x/proxmoxbackupclientdocker:latest",
+	"dockerFile": "ghcr.io/ovrap3x/proxmoxbackupclientdocker:latest",
 	"settings": { 
 		"terminal.integrated.shell.linux": "/usr/bin/pwsh"
 	},
