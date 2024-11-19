@@ -3,14 +3,12 @@
 {
 	"name": "PowerShell",
 	"image": "ghcr.io/ovrap3x/proxmoxbackupclientdocker:latest",
-
+	"settings": { 
+		"terminal.integrated.shell.linux": "/usr/bin/pwsh"
+	},
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"ms-vscode.powershell-preview",
-		"ironmansoftware.powershell-universal",
-		"tylerleonhardt.vscode-pester-test-adapter",
-		"tylerleonhardt.vscode-inline-values-powershell"
-//		"ironmansoftware.powershellprotools"
-	],
+		"ms-vscode.powershell"
+	]
 
 }
