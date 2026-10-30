@@ -9,6 +9,9 @@ jobs:
 
   build-and-push-docker-image:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - 
         name: Checkout
@@ -24,8 +27,8 @@ jobs:
         uses: docker/login-action@v1 
         with:
           registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.PAT }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       -
         # A dated tag next to latest, so consumers can pin <tag>@sha256 and Renovate can update it.
         name: Version tag
