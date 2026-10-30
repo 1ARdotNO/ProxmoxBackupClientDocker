@@ -1,0 +1,32 @@
+name: Retag an existing image
+
+# Gives an already published digest a tag, without rebuilding (e.g. a pinnable tag for the last good build).
+on:
+  workflow_dispatch:
+    inputs:
+      digest:
+        description: "Source digest (sha256:...)"
+        required: true
+      tag:
+        description: "New tag"
+        required: true
+
+jobs:
+  retag:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    steps:
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/setup-buildx-action@v3
+      - name: Retag
+        env:
+          DIGEST: ${{ inputs.digest }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          docker buildx imagetools create -t "ghcr.io/1ardotno/proxmoxbackupclientdocker:$TAG" \
+            "ghcr.io/1ardotno/proxmoxbackupclientdocker@$DIGEST"
