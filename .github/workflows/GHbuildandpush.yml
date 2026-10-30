@@ -27,6 +27,11 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.PAT }}
       -
+        # A dated tag next to latest, so consumers can pin <tag>@sha256 and Renovate can update it.
+        name: Version tag
+        id: version
+        run: echo "tag=$(date -u +%Y%m%d)-${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+      -
         name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -34,4 +39,6 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/1ardotno/proxmoxbackupclientdocker:latest
+          tags: |
+            ghcr.io/1ardotno/proxmoxbackupclientdocker:latest
+            ghcr.io/1ardotno/proxmoxbackupclientdocker:${{ steps.version.outputs.tag }}
